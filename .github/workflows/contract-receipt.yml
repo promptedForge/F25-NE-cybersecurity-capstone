@@ -1,0 +1,27 @@
+name: Contract Receipt
+on:
+  push:
+    paths:
+      - 'EvaluationLabels.json'
+      - 'docs/deliverables/**'
+jobs:
+  receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compute receipt
+        run: |
+          mkdir -p receipts
+          TS=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          HASH=$(git rev-parse HEAD)
+          echo "timestamp: $TS" > receipts/$HASH.yml
+          echo "commit: $HASH" >> receipts/$HASH.yml
+          echo "actor: $GITHUB_ACTOR" >> receipts/$HASH.yml
+          echo "note: Public receipt; enterprise ledger handled where applicable." >> receipts/$HASH.yml
+      - name: Commit receipt
+        run: |
+          git config user.name "capstone-receipt-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add receipts/
+          git commit -m "chore(receipt): add receipt for $GITHUB_SHA" || echo "no changes"
+          git push

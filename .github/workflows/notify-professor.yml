@@ -1,0 +1,12 @@
+name: Professor Notify (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: 'Short message'
+        required: false
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Faculty can observe via repo; formal notifications handled externally where applicable."

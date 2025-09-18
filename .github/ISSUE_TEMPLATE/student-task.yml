@@ -1,0 +1,20 @@
+name: Student task
+description: Structured student work item
+title: "[Task] <short description>"
+labels: ["student"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Link to roadmap section or deliverable
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Bullet points to validate completion
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence links
+      description: Paths to artifacts updated/created
