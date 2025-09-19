@@ -1,27 +1,125 @@
-name: Contract Receipt
+name: Smart Contract Receipt & Ledger Update
 on:
   push:
     paths:
       - 'EvaluationLabels.json'
       - 'docs/deliverables/**'
+      - 'docs/students/Group_Contract.md'
 jobs:
   receipt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compute receipt
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Generate Smart Contract Receipt
         run: |
           mkdir -p receipts
           TS=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           HASH=$(git rev-parse HEAD)
-          echo "timestamp: $TS" > receipts/$HASH.yml
-          echo "commit: $HASH" >> receipts/$HASH.yml
-          echo "actor: $GITHUB_ACTOR" >> receipts/$HASH.yml
-          echo "note: Public receipt; enterprise ledger handled where applicable." >> receipts/$HASH.yml
+          
+          # Extract token metadata from ledger
+          python3 -c "
+          import json, sys
+          
+          try:
+              with open('EvaluationLabels.json') as f:
+                  ledger = json.load(f)
+              
+              receipt = {
+                  'timestamp': '$TS',
+                  'commit': '$HASH',
+                  'actor': '${{ github.actor }}',
+                  'ledger_version': ledger.get('metadata', {}).get('version', '1.0'),
+                  'contract_anchor': ledger.get('metadata', {}).get('contract_anchor', 'unknown'),
+                  'active_objectives': [],
+                  'completed_objectives': [],
+                  'stretch_objectives': list(ledger.get('stretch_objectives', {}).keys()),
+                  'recent_transitions': [],
+                  'escrow_status': ledger.get('metadata', {}).get('escrow_status', 'unknown')
+              }
+              
+              # Process objectives
+              for obj_id, obj_data in ledger.get('objectives', {}).items():
+                  if obj_data.get('status', False):
+                      receipt['completed_objectives'].append({
+                          'objective_id': obj_id,
+                          'anchor': obj_data.get('token_stub', {}).get('Anchor', 'unknown'),
+                          'signatories': obj_data.get('token_stub', {}).get('Signatories', []),
+                          'escrow_state': obj_data.get('escrow_state', 'unknown')
+                      })
+                  else:
+                      receipt['active_objectives'].append({
+                          'objective_id': obj_id,
+                          'anchor': obj_data.get('token_stub', {}).get('Anchor', 'unknown'),
+                          'signatories': obj_data.get('token_stub', {}).get('Signatories', []),
+                          'escrow_state': obj_data.get('escrow_state', 'unknown')
+                      })
+              
+              # Get recent state transitions (last 5)
+              transitions = ledger.get('state_transitions', [])
+              receipt['recent_transitions'] = transitions[-5:] if len(transitions) > 5 else transitions
+              
+              # Add dispute information
+              receipt['disputes'] = len(ledger.get('dispute_log', []))
+              
+              import json
+              with open('receipts/${HASH}.json', 'w') as f:
+                  json.dump(receipt, f, indent=2)
+              
+              print(f'Receipt generated: receipts/${HASH}.json')
+              print(f'Completed objectives: {len(receipt[\"completed_objectives\"])}')
+              print(f'Active objectives: {len(receipt[\"active_objectives\"])}')
+              print(f'Stretch objectives: {len(receipt[\"stretch_objectives\"])}')
+              print(f'Recent transitions: {len(receipt[\"recent_transitions\"])}')
+              
+          except Exception as e:
+              print(f'Error generating receipt: {e}')
+              # Fallback to simple receipt
+              with open('receipts/${HASH}.yml', 'w') as f:
+                  f.write(f'timestamp: $TS\n')
+                  f.write(f'commit: $HASH\n')
+                  f.write(f'actor: ${{ github.actor }}\n')
+                  f.write(f'note: Fallback receipt - ledger parsing failed\n')
+          "
+      - name: Escrow Token Metadata to Ubiquity OS
+        run: |
+          echo "=== Ubiquity OS Token Escrow Simulation ==="
+          python3 -c "
+          import json
+          
+          try:
+              with open('EvaluationLabels.json') as f:
+                  ledger = json.load(f)
+              
+              print('Escrowing token metadata to Ubiquity OS substrate...')
+              
+              # Simulate escrow for all objectives
+              all_objectives = {**ledger.get('objectives', {}), **ledger.get('stretch_objectives', {})}
+              
+              for obj_id, obj_data in all_objectives.items():
+                  token_stub = obj_data.get('token_stub', {})
+                  escrow_metadata = {
+                      'ObjectiveID': token_stub.get('ObjectiveID', obj_id),
+                      'Status': token_stub.get('Status', 'false'),
+                      'Timestamp': token_stub.get('Timestamp'),
+                      'Signatories': token_stub.get('Signatories', []),
+                      'Anchor': token_stub.get('Anchor', 'unknown'),
+                      'EscrowState': obj_data.get('escrow_state', 'pending')
+                  }
+                  print(f'  → {obj_id}: {escrow_metadata[\"EscrowState\"]} ({len(escrow_metadata[\"Signatories\"])} sigs)')
+              
+              print('Token metadata escrowed for non-temporal retrieval.')
+              
+          except Exception as e:
+              print(f'Error during escrow simulation: {e}')
+          "
       - name: Commit receipt
         run: |
-          git config user.name "capstone-receipt-bot"
+          git config user.name "smart-contract-bot"
           git config user.email "bot@users.noreply.github.com"
           git add receipts/
-          git commit -m "chore(receipt): add receipt for $GITHUB_SHA" || echo "no changes"
+          git commit -m "chore(receipt): smart contract receipt for $GITHUB_SHA" || echo "no changes"
           git push

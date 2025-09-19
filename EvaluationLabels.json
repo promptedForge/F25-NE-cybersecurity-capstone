@@ -1,13 +1,207 @@
 {
-  "O1": false,
-  "O2": false,
-  "O3": false,
-  "O4": false,
-  "O5": false,
-  "O6": false,
-  "O7": false,
-  "O8": false,
-  "O9": false,
-  "O10": false,
-  "updated_at": "2025-09-18T08:22:47.503959Z"
+  "metadata": {
+    "version": "2.0",
+    "updated_at": "2025-09-19T03:57:30.609605+00:00",
+    "contract_anchor": "Contract_Anchor_O7",
+    "escrow_status": "active"
+  },
+  "objectives": {
+    "O1": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O1",
+        "Status": "false",
+        "Timestamp": "2025-09-19T03:56:45.712137+00:00",
+        "Signatories": [
+          "StudentTeam",
+          "Professor",
+          "Sponsor"
+        ],
+        "Anchor": "Crosswalk_Anchor_O1"
+      },
+      "evidence_path": "docs/deliverables/FRAMEWORK_CROSSWALK_v0.1.md",
+      "escrow_state": "disputed"
+    },
+    "O2": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O2",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Policy_Anchor_O2"
+      },
+      "evidence_path": "policies/drafts/",
+      "escrow_state": "pending"
+    },
+    "O3": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O3",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Challenge_Anchor_O3"
+      },
+      "evidence_path": "docs/deliverables/CHALLENGE_KIT_OUTLINE.md",
+      "escrow_state": "pending"
+    },
+    "O4": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O4",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Binder_Anchor_O4"
+      },
+      "evidence_path": "docs/deliverables/EVIDENCE_BINDER_INDEX.md",
+      "escrow_state": "pending"
+    },
+    "O5": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O5",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Roadmap_Anchor_O5"
+      },
+      "evidence_path": "docs/students/ROADMAP.md",
+      "escrow_state": "pending"
+    },
+    "O6": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O6",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "IR_Anchor_O6"
+      },
+      "evidence_path": "docs/deliverables/IR_RUNBOOK.md",
+      "escrow_state": "pending"
+    },
+    "O7": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O7",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Contract_Anchor_O7"
+      },
+      "evidence_path": "docs/students/Group_Contract.md",
+      "escrow_state": "pending"
+    },
+    "O8": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O8",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Checkpoint_Anchor_O8"
+      },
+      "evidence_path": "EvaluationLabels.json",
+      "escrow_state": "pending"
+    },
+    "O9": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O9",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Presentation_Anchor_O9"
+      },
+      "evidence_path": "docs/deliverables/WEEK9_SLIDE_TEMPLATE.md",
+      "escrow_state": "pending"
+    },
+    "O10": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O10",
+        "Status": "false",
+        "Timestamp": null,
+        "Signatories": [],
+        "Anchor": "Stretch_Anchor_O10"
+      },
+      "evidence_path": "enterprise/",
+      "escrow_state": "pending"
+    }
+  },
+  "stretch_objectives": {
+    "O10-XX": {
+      "status": false,
+      "token_stub": {
+        "ObjectiveID": "O10-XX",
+        "Status": "false",
+        "Timestamp": "2025-09-19T03:57:17.741942+00:00",
+        "Signatories": [],
+        "Anchor": "Stretch_Anchor_O10-XX"
+      },
+      "evidence_path": "https://example.com/stretch-evidence",
+      "escrow_state": "pending",
+      "stretch_type": true,
+      "base_objective": "O10"
+    }
+  },
+  "dispute_log": [
+    {
+      "objective_id": "O1",
+      "timestamp": "2025-09-19T03:57:24.016681+00:00",
+      "rationale": "Evidence insufficient",
+      "initiated_by": "Professor",
+      "anchor": "Crosswalk_Anchor_O1"
+    }
+  ],
+  "state_transitions": [
+    {
+      "objective_id": "O1",
+      "action": "evidence_delivered",
+      "timestamp": "2025-09-19T03:56:45.712137+00:00",
+      "signatory": "StudentTeam",
+      "evidence_url": "https://example.com/evidence",
+      "anchor": "Crosswalk_Anchor_O1"
+    },
+    {
+      "objective_id": "O1",
+      "action": "professor_validation",
+      "timestamp": "2025-09-19T03:56:51.752986+00:00",
+      "signatory": "Professor",
+      "epistemic_lock": true,
+      "anchor": "Crosswalk_Anchor_O1"
+    },
+    {
+      "objective_id": "O1",
+      "action": "sponsor_acknowledgement",
+      "timestamp": "2025-09-19T03:56:57.748996+00:00",
+      "signatory": "Sponsor",
+      "perception_locked": true,
+      "anchor": "Crosswalk_Anchor_O1"
+    },
+    {
+      "objective_id": "O1",
+      "action": "objective_completed",
+      "timestamp": "2025-09-19T03:57:03.918698+00:00",
+      "consensus_achieved": true,
+      "anchor": "Crosswalk_Anchor_O1"
+    },
+    {
+      "objective_id": "O10-XX",
+      "action": "stretch_token_minted",
+      "timestamp": "2025-09-19T03:57:17.741942+00:00",
+      "evidence_url": "https://example.com/stretch-evidence",
+      "anchor": "Stretch_Anchor_O10-XX"
+    },
+    {
+      "objective_id": "O1",
+      "action": "token_reverted",
+      "timestamp": "2025-09-19T03:57:24.016681+00:00",
+      "signatory": "Professor",
+      "rationale": "Evidence insufficient",
+      "anchor": "Crosswalk_Anchor_O1"
+    }
+  ]
 }
