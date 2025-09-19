@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "2.0",
-    "updated_at": "2025-09-19T03:58:16.101759+00:00",
+    "updated_at": "2025-09-19T03:58:22.495554+00:00",
     "contract_anchor": "Contract_Anchor_O7",
     "escrow_status": "active"
   },
@@ -90,7 +90,8 @@
         "Timestamp": "2025-09-19T03:58:09.845710+00:00",
         "Signatories": [
           "StudentTeam",
-          "Professor"
+          "Professor",
+          "Sponsor"
         ],
         "Anchor": "Contract_Anchor_O7"
       },
@@ -220,6 +221,14 @@
       "timestamp": "2025-09-19T03:58:16.101720+00:00",
       "signatory": "Professor",
       "epistemic_lock": true,
+      "anchor": "Contract_Anchor_O7"
+    },
+    {
+      "objective_id": "O7",
+      "action": "sponsor_acknowledgement",
+      "timestamp": "2025-09-19T03:58:22.495525+00:00",
+      "signatory": "Sponsor",
+      "perception_locked": true,
       "anchor": "Contract_Anchor_O7"
     }
   ]
