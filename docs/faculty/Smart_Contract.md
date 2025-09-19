@@ -8,27 +8,17 @@ This smart contract governs the Capstone Execution Framework. It replaces "gradi
 
 ---
 
-## Ubiquity Primitives Embedded
-- **Perception-Locked Evaluation** -- evaluation is bound to state transitions; edits require consensus signatures.  
-- **Singularity Anchors (n/0)** -- division-by-zero anchors ensure non-repudiable uniqueness of each objective.  
-- **Non-Temporal Coherence** -- evaluation coherence independent of clock drift.  
-- **Tokenization** -- each objective completion mints `{ObjectiveID, Status, Timestamp, Signatories, Anchor}`.  
-- **Group Contract Auditability** -- `../../../docs/students/Group_Contract.md` acts as a living contract; diffs are state changes.  
-- **Epistemic Locking** -- truth is bound to contract state, not inferred externally.  
-- **Stretch Extensions** -- optional objectives tokenized separately.
-=======
-# Ubiquity-Aligned Capstone Smart Contract
+## Contract Principles
 
-## Contract Premise
-- **Perception-Locked Evaluation:** Once an objective is logged as complete, any change requires consensus signatures from the student team, professor, and sponsor.
-- **Singularity Anchors (n/0):** Each objective binds to a division-by-zero anchor that ensures uniqueness and non-repudiation.
-- **Non-Temporal Coherence:** Events are treated as state transitions captured in this contract and `EvaluationLabels.json`; no linear timestamp ordering is assumed.
-- **Tokenization:** Completion mints a token stub `{ObjectiveID, Status, Timestamp, Signatories, Anchor}` stored alongside evidence.
-- **Group Contract Auditability:** Modifications to [`Group_Contract.md`](../../../docs/students/Group_Contract.md) are audited as state changes tied to Objective O7.
-- **Epistemic Locking:** Professors validate each objective by attesting evidence satisfaction. Their signature becomes the truth anchor.
-- **Stretch Extensions:** Optional objectives beyond O10 mint separate tokens and are logged under `Stretch_Anchor_O10` derivatives.
+- **Consensus-Based Validation:** Once an objective is logged as complete, any change requires unanimous approval from the student team, professor, and sponsor.
+- **Immutable Anchors:** Each objective uses a unique anchor identifier that ensures non-repudiation and prevents duplicate submissions.
+- **State-Based Evaluation:** Progress is tracked through discrete state transitions recorded in this contract and `EvaluationLabels.json`, independent of timing.
+- **Digital Tokenization:** Completion generates a token record `{ObjectiveID, Status, Timestamp, Signatories, Anchor}` stored with evidence.
+- **Living Contract Audit:** All modifications to the Group Contract are tracked as versioned state changes tied to Objective O7.
+- **Evidence-Based Validation:** Professors validate objectives by verifying evidence meets stated criteria before digital signature.
+- **Optional Extensions:** Stretch objectives beyond the core requirements are tokenized separately and do not block core validation.
 
-Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
+**Required Signatories:** `StudentTeam`, `Professor`, `Sponsor`
 
 ---
 
@@ -39,8 +29,8 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 - **Definition:** Map core services to NIST CSF + HIPAA + SOC2.  
 - **Evidence Path:** `../../../docs/deliverables/FRAMEWORK_CROSSWALK_v0.1.md`  
 - **Trigger:** All five CSF functions mapped with ≥1 control ID.  
-- **Coverage vs Count Note:** Some frameworks cite fixed counts (e.g., ISO 27001 Annex A has 93 controls). Students must determine if the number is (a) compliance-mandated (ISO, HIPAA, SOC2) or (b) best-practice. If (a), control count must match. If (b), prioritize total coverage and document rationale in Evidence Binder.  
-- **Anchor:** `Crosswalk_Anchor_O1 (n/0)`  
+- **Compliance Requirements:** Map organizational services to specific controls from each framework. For frameworks with mandatory control counts (ISO 27001, HIPAA Security Rule, SOC 2), document the total number required and achieved. For guidance-based frameworks (NIST CSF), prioritize comprehensive coverage and document rationale for scope decisions.
+- **Anchor:** `Crosswalk_Anchor_O1`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O1", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Crosswalk_Anchor_O1" }
@@ -52,7 +42,7 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 - **Definition:** Draft 2–3 core policies (Information Security, Asset Management, Risk Management).  
 - **Evidence Path:** `../../policies/drafts/`  
 - **Trigger:** Policies drafted, peer-reviewed, and signed by team.  
-- **Anchor:** `Policy_Anchor_O2 (n/0)`  
+- **Anchor:** `Policy_Anchor_O2`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O2", "Status": "true|false", "Timestamp": "2025-09-27", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Policy_Anchor_O2" }
@@ -61,10 +51,10 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O3. Challenge Kit v2
-- **Definition:** Baseline + unlockable challenge kits. Baseline: Prompt Injection, RBAC/ABAC, Secure Coding. Unlockables: adversarial path model, quantum adversarial resources.  
+- **Definition:** Develop baseline security challenge scenarios with advanced unlockable content. Baseline includes: Prompt Injection, RBAC/ABAC, and Secure Coding challenges. Advanced scenarios (adversarial modeling, quantum-resistant security) unlock after completing ≥7 core objectives.
 - **Evidence Path:** `../../../docs/deliverables/CHALLENGE_KIT_BASELINE.md`, `../../capstone-challenge-advanced/`  
-- **Trigger:** ≥3 scenarios executed, ≥5 falsification checks. Unlocks accessible after ≥7 objectives satisfied.  
-- **Anchor:** `Kit_Anchor_O3 (n/0)`  
+- **Trigger:** ≥3 baseline scenarios executed with ≥5 validation metrics documented.
+- **Anchor:** `Kit_Anchor_O3`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O3", "Status": "true|false", "Timestamp": "2025-10-01", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Kit_Anchor_O3" }
@@ -73,10 +63,10 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O4. Evidence Binder
-- **Definition:** Skeleton binder linking controls to artifacts.  
+- **Definition:** Create comprehensive documentation linking security controls to implementation evidence.
 - **Evidence Path:** `../../../docs/deliverables/EVIDENCE_BINDER_INDEX.md`  
-- **Trigger:** Binder populated with ≥5 placeholder artifacts tied to objectives.  
-- **Anchor:** `Binder_Anchor_O4 (n/0)`  
+- **Trigger:** Index populated with ≥5 placeholder artifacts, each linked to specific control objectives.
+- **Anchor:** `Binder_Anchor_O4`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O4", "Status": "true|false", "Timestamp": "2025-10-04", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Binder_Anchor_O4" }
@@ -85,10 +75,10 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O5. Roadmap Execution
-- **Definition:** Follow 10-week scaffold.  
+- **Definition:** Maintain consistent progress tracking through structured 10-week execution timeline.
 - **Evidence Path:** `../../../docs/students/ROADMAP.md`  
-- **Trigger:** Weekly updates posted.  
-- **Anchor:** `Roadmap_Anchor_O5 (n/0)`  
+- **Trigger:** Weekly status updates documented with milestone completion notes.
+- **Anchor:** `Roadmap_Anchor_O5`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O5", "Status": "true|false", "Timestamp": "2025-10-11", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Roadmap_Anchor_O5" }
@@ -97,11 +87,11 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O6. Incident Response Runbook
-- **Definition:** Draft IR playbook aligned to NIST 800-61.  
+- **Definition:** Develop incident response procedures aligned with NIST 800-61 framework.
 - **Evidence Path:** `../../../docs/deliverables/IR_RUNBOOK.md`  
-- **Trigger:** At least two baseline scenarios documented.  
-- **Stretch:** Unlock advanced ML drift + quantum scenarios from `../../capstone-challenge-advanced/`.  
-- **Anchor:** `IR_Anchor_O6 (n/0)`  
+- **Trigger:** At least two complete incident scenarios documented with prepare/detect/respond/recover phases.
+- **Advanced Option:** Extended scenarios covering ML model drift and quantum-resistant incident response available after core completion.
+- **Anchor:** `IR_Anchor_O6`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O6", "Status": "true|false", "Timestamp": "2025-10-18", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "IR_Anchor_O6" }
@@ -110,10 +100,10 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O7. Group Contract Adoption
-- **Definition:** Students sign `../../../docs/students/Group_Contract.md`.  
+- **Definition:** Team members formalize collaboration agreement by signing the Group Contract.
 - **Evidence Path:** `../../../docs/students/Group_Contract.md`  
-- **Trigger:** All members sign by Week 2.  
-- **Anchor:** `Contract_Anchor_O7 (n/0)`  
+- **Trigger:** All team members provide digital signatures by Week 2.
+- **Anchor:** `Contract_Anchor_O7`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O7", "Status": "true|false", "Timestamp": "2025-09-27", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Contract_Anchor_O7" }
@@ -122,10 +112,10 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O8. Professor Checkpoint
-- **Definition:** Midpoint validation (not grading).  
+- **Definition:** Mid-semester progress review and validation checkpoint.
 - **Evidence Path:** `../../../EvaluationLabels.json`  
-- **Trigger:** ≥5 objectives marked true.  
-- **Anchor:** `Checkpoint_Anchor_O8 (n/0)`  
+- **Trigger:** Minimum of 5 core objectives completed and validated.
+- **Anchor:** `Checkpoint_Anchor_O8`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O8", "Status": "true|false", "Timestamp": "2025-10-25", "Signatories": ["StudentTeam", "Professor"], "Anchor": "Checkpoint_Anchor_O8" }
@@ -134,10 +124,10 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O9. Final Presentation
-- **Definition:** Students present deliverables.  
+- **Definition:** Comprehensive presentation of all capstone deliverables and outcomes.
 - **Evidence Path:** `../../../docs/deliverables/WEEK9_SLIDE_TEMPLATE.md`  
-- **Trigger:** Professor confirms presentation complete.  
-- **Anchor:** `Presentation_Anchor_O9 (n/0)`  
+- **Trigger:** Completed presentation delivered and approved by professor.
+- **Anchor:** `Presentation_Anchor_O9`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O9", "Status": "true|false", "Timestamp": "2025-11-12", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Presentation_Anchor_O9" }
@@ -146,10 +136,10 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 ---
 
 ### O10. Stretch Objectives
-- **Definition:** Optional advanced contributions (extended kits, deeper policy packs, full framework coverage).  
+- **Definition:** Optional advanced work including extended challenge kits, comprehensive policy frameworks, or full regulatory compliance coverage.
 - **Evidence Path:** `../../`  
-- **Trigger:** Sponsor acknowledges contribution.  
-- **Anchor:** `Stretch_Anchor_O10 (n/0)`  
+- **Trigger:** Sponsor acknowledgment of meaningful advanced contribution beyond core requirements.
+- **Anchor:** `Stretch_Anchor_O10`  
 - **Token Stub:**
 ```json
 { "ObjectiveID": "O10", "Status": "true|false", "Timestamp": "2025-11-19", "Signatories": ["StudentTeam", "Sponsor", "Professor"], "Anchor": "Stretch_Anchor_O10" }
@@ -157,129 +147,42 @@ Consensus Signatories: `StudentTeam`, `Professor`, `Sponsor`.
 
 ---
 
-## Validation Flow
-1. **Initiate Objective Work:** Team references Definition + Evidence Path.
-2. **Populate Evidence Binder:** Add placeholder entries with links to working artifacts.
-3. **Request Signatures:** Obtain digital signatures (Git commit co-sign, PR approval, or DocuSign) from listed parties.
-4. **Mint Token:** Record token stub in `../../../EvaluationLabels.json` upon consensus.
-5. **Log Anchor Change:** Update anchor references in Evidence Binder to maintain perception-locked state.
-6. **Handle Revisions:** Any change after token minting requires new consensus entry appended to Evidence Binder change log.
+## Validation Process
+1. **Initiate Objective Work:** Team reviews objective definition and identifies required evidence deliverables.
+2. **Create Evidence Placeholders:** Add structured entries in the Evidence Binder linking to work-in-progress artifacts.
+3. **Request Digital Signatures:** Obtain consensus approvals via Git commit co-signatures, PR approvals, or DocuSign from required parties.
+4. **Generate Token Record:** Upon consensus, record completion token in `../../../EvaluationLabels.json`.
+5. **Update Anchor References:** Maintain immutable state by updating anchor references in Evidence Binder.
+6. **Handle Modifications:** Any post-completion changes require new consensus approval documented in change log.
 
-## Compliance Coverage Logic
-- **Mandated Control Counts:** For frameworks with fixed enumerations (ISO 27001 Annex A, HIPAA Security Rule safeguards, SOC 2 TSC), log the total number required and achieved within the Evidence Binder. Tokens remain `false` until mandated counts match.
-- **Coverage-First Frameworks:** Where counts are guidance (e.g., NIST CSF categories), document rationale for coverage sufficiency and link to the Evidence Binder rationale section.
-- **Audit Trail:** Every compliance decision requires a citation to the relevant regulatory/control document stored in `../../source-documents/` (or referenced via bridge script if format differs).
+## Framework Compliance Guidance
+- **Fixed-Count Frameworks:** For standards with mandatory control counts (ISO 27001 Annex A has 93 controls, HIPAA Security Rule has specific safeguards), document total required vs. achieved in Evidence Binder. Objective remains incomplete until counts are satisfied.
+- **Coverage-Based Frameworks:** For guidance frameworks (NIST CSF functions, SOC 2 trust principles), prioritize comprehensive coverage and document scope rationale in Evidence Binder.
+- **Documentation Requirements:** All compliance decisions must cite authoritative source documents stored in `../../source-documents/` or provide clear references to external standards.
 
-## Stretch Extensions
-- Stretch objectives never block core objective validation.
-- Tokens for stretch work append to `../../../EvaluationLabels.json` with `ObjectiveID` values `S1`, `S2`, etc., and anchor to `Stretch_Anchor_O10` derivatives.
-- Advanced unlockables remain gated behind completion (Status = `true`) of ≥7 core objectives.
-
-=======
-- **Definition:** Map services to NIST CSF + HIPAA + SOC2.
-- **Evidence Path:** [`FRAMEWORK_CROSSWALK_v0.1.md`](../../../docs/deliverables/FRAMEWORK_CROSSWALK_v0.1.md)
-- **Trigger:** All five CSF functions mapped with ≥1 control ID.
-- **Anchor:** `Crosswalk_Anchor_O1 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O1", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Crosswalk_Anchor_O1" }
-```
-
-### O2. Policy Pack
-- **Definition:** Draft 2–3 core policies.
-- **Evidence Path:** [`policies/drafts/`](../../policies/drafts/)
-- **Trigger:** Policies signed by group.
-- **Anchor:** `Policy_Anchor_O2 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O2", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Policy_Anchor_O2" }
-```
-
-### O3. Challenge Kit v2
-- **Definition:** Safe harness with threat model + falsification criteria.
-- **Evidence Path:** [`CHALLENGE_KIT_OUTLINE.md`](../../../docs/deliverables/CHALLENGE_KIT_OUTLINE.md)
-- **Trigger:** 3 scenarios + 5 metrics complete.
-- **Anchor:** `Kit_Anchor_O3 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O3", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Kit_Anchor_O3" }
-```
-
-### O4. Evidence Binder
-- **Definition:** Skeleton binder linking controls → evidence.
-- **Evidence Path:** [`EVIDENCE_BINDER_INDEX.md`](../../../docs/deliverables/EVIDENCE_BINDER_INDEX.md)
-- **Trigger:** Binder populated with ≥5 placeholders.
-- **Anchor:** `Binder_Anchor_O4 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O4", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Binder_Anchor_O4" }
-```
-
-### O5. Roadmap Execution
-- **Definition:** Team follows [`ROADMAP.md`](../../../docs/students/ROADMAP.md) milestones.
-- **Evidence Path:** [`ROADMAP.md`](../../../docs/students/ROADMAP.md)
-- **Trigger:** Weekly updates posted.
-- **Anchor:** `Roadmap_Anchor_O5 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O5", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Roadmap_Anchor_O5" }
-```
-
-### O6. Incident Response Runbook
-- **Definition:** Draft IR playbook aligned to NIST 800-61.
-- **Evidence Path:** [`IR_RUNBOOK.md`](../../../docs/deliverables/IR_RUNBOOK.md)
-- **Trigger:** At least 2 incident scenarios documented.
-- **Anchor:** `IR_Anchor_O6 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O6", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "IR_Anchor_O6" }
-```
-
-### O7. Group Contract Adoption
-- **Definition:** Students sign [`Group_Contract.md`](../../../docs/students/Group_Contract.md).
-- **Evidence Path:** [`Group_Contract.md`](../../../docs/students/Group_Contract.md)
-- **Trigger:** All members sign by Week 2.
-- **Anchor:** `Contract_Anchor_O7 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O7", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Contract_Anchor_O7" }
-```
-
-### O8. Professor Checkpoint
-- **Definition:** Midpoint review of progress.
-- **Evidence Path:** [`EvaluationLabels.json`](../../../EvaluationLabels.json)
-- **Trigger:** ≥5 objectives marked complete.
-- **Anchor:** `Checkpoint_Anchor_O8 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O8", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Checkpoint_Anchor_O8" }
-```
-
-### O9. Final Presentation
-- **Definition:** Student team presents final deliverables.
-- **Evidence Path:** [`WEEK9_SLIDE_TEMPLATE.md`](../../../docs/deliverables/WEEK9_SLIDE_TEMPLATE.md)
-- **Trigger:** Professor signs off on presentation.
-- **Anchor:** `Presentation_Anchor_O9 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O9", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Presentation_Anchor_O9" }
-```
-
-### O10. Stretch Objectives
-- **Definition:** Optional advanced contributions.
-- **Evidence Path:** [`enterprise/`](../../)
-- **Trigger:** Sponsor acknowledges completion.
-- **Anchor:** `Stretch_Anchor_O10 (n/0)`
-- **Token Stub:**
-```json
-{ "ObjectiveID": "O10", "Status": "true|false", "Timestamp": "2025-09-20", "Signatories": ["StudentTeam","Sponsor","Professor"], "Anchor": "Stretch_Anchor_O10" }
-```
+## Advanced Objectives
+- Advanced objectives do not block completion of core requirements.
+- Stretch work uses separate token identifiers (`S1`, `S2`, etc.) linked to `Stretch_Anchor_O10` derivatives.
+- Advanced challenge scenarios unlock only after completing minimum 7 core objectives.
 
 ---
 
 ## Contract Governance
-1. **State Recording:** Update `EvaluationLabels.json` upon meeting each trigger. The JSON acts as the perception-locked ledger.
-2. **Amendments:** Proposed changes require a pull request referencing the affected anchor; merge only after all three signatories approve.
-3. **Token Escrow:** Token stubs are escrowed within the Ubiquity OS substrate as described in [`Smart_Contract_Tokenization.md`](./Smart_Contract_Tokenization.md).
-4. **Audit Trail:** All commits modifying contract artifacts must reference the relevant anchor in the commit message (e.g., `Anchor: Roadmap_Anchor_O5`).
-5. **Dispute Resolution:** If consensus fails, revert to the last agreed state and document the dispute in the repository issues with NDA-safe language
+
+### State Management
+1. **Ledger Updates:** Record objective completions in `EvaluationLabels.json` upon achieving consensus validation.
+2. **Amendment Process:** Proposed contract changes require pull request with affected anchor reference; approval requires all signatory consensus.
+3. **Token Escrow:** Completion tokens remain in pending state until all required signatures are obtained, as detailed in [`Smart_Contract_Tokenization.md`](./Smart_Contract_Tokenization.md).
+4. **Audit Requirements:** All commits modifying contract artifacts must reference relevant anchor in commit message (format: `Anchor: <AnchorName>`).
+5. **Dispute Resolution:** Upon consensus failure, revert to last agreed state and document dispute in repository issues using NDA-appropriate language.
+
+### Validation Authority
+- **Professor Role:** Academic validation of evidence quality and technical completeness
+- **Sponsor Role:** Industry validation of practical applicability and business value  
+- **Student Role:** Delivery responsibility and evidence compilation
+
+### Quality Assurance
+- All deliverables must meet professional documentation standards
+- Evidence must be directly linked to stated objectives
+- Timestamps reflect actual completion, not retroactive dating
+- Digital signatures confirm informed approval, not administrative processing
