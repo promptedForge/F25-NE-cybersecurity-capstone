@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "2.0",
-    "updated_at": "2025-09-19T03:58:22.495554+00:00",
+    "updated_at": "2025-09-19T03:58:29.398791+00:00",
     "contract_anchor": "Contract_Anchor_O7",
     "escrow_status": "active"
   },
@@ -83,7 +83,7 @@
       "escrow_state": "pending"
     },
     "O7": {
-      "status": false,
+      "status": true,
       "token_stub": {
         "ObjectiveID": "O7",
         "Status": "true",
@@ -96,7 +96,7 @@
         "Anchor": "Contract_Anchor_O7"
       },
       "evidence_path": "docs/students/Group_Contract.md",
-      "escrow_state": "pending"
+      "escrow_state": "released"
     },
     "O8": {
       "status": false,
@@ -229,6 +229,13 @@
       "timestamp": "2025-09-19T03:58:22.495525+00:00",
       "signatory": "Sponsor",
       "perception_locked": true,
+      "anchor": "Contract_Anchor_O7"
+    },
+    {
+      "objective_id": "O7",
+      "action": "objective_completed",
+      "timestamp": "2025-09-19T03:58:29.367764+00:00",
+      "consensus_achieved": true,
       "anchor": "Contract_Anchor_O7"
     }
   ]
