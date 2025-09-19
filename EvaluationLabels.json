@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "2.0",
-    "updated_at": "2025-09-19T03:57:30.609605+00:00",
+    "updated_at": "2025-09-19T03:58:09.876469+00:00",
     "contract_anchor": "Contract_Anchor_O7",
     "escrow_status": "active"
   },
@@ -86,9 +86,11 @@
       "status": false,
       "token_stub": {
         "ObjectiveID": "O7",
-        "Status": "false",
-        "Timestamp": null,
-        "Signatories": [],
+        "Status": "true",
+        "Timestamp": "2025-09-19T03:58:09.845710+00:00",
+        "Signatories": [
+          "StudentTeam"
+        ],
         "Anchor": "Contract_Anchor_O7"
       },
       "evidence_path": "docs/students/Group_Contract.md",
@@ -202,6 +204,14 @@
       "signatory": "Professor",
       "rationale": "Evidence insufficient",
       "anchor": "Crosswalk_Anchor_O1"
+    },
+    {
+      "objective_id": "O7",
+      "action": "evidence_delivered",
+      "timestamp": "2025-09-19T03:58:09.845710+00:00",
+      "signatory": "StudentTeam",
+      "evidence_url": "https://github.com/example/group-contract",
+      "anchor": "Contract_Anchor_O7"
     }
   ]
 }
