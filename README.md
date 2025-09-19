@@ -5,6 +5,43 @@ It is public by design and excludes enterprise-only methods. The workflow is **s
 execution flips objective receipts; faculty can observe and comment; sponsors review asynchronously.
 
 ---
+## Visualize the capstone mgmt:
+
+```mermaid
+```mermaid
+sequenceDiagram
+    participant Student
+    participant Group_Contract
+    participant Professor
+    participant Sponsor
+    participant Ledger
+    participant Ubiquity_OS
+
+    Student->>Group_Contract: Deliver evidence (O1–O10), update artifact
+    Student->>Group_Contract: Update Token Stub (Status=true, timestamp, signatories)
+    Professor->>Group_Contract: Validate evidence (Epistemic Lock), append signature
+    Professor->>Ledger: Record state transition
+    Sponsor->>Group_Contract: Add signature (perception-locked consensus)
+    Group_Contract->>Ledger: Flip objective flag to true (mirror token state)
+    Ledger->>Ubiquity_OS: Escrow Token Metadata ({ObjectiveID, Status, Timestamp, Signatories, Anchor})
+
+    Note over Group_Contract,Ledger: 
+      Tokens remain in escrow until all roles have signed.
+    alt Dispute arises
+        Group_Contract->>Ledger: Revert Token (Status=false), record rationale
+    end
+    alt Stretch objectives
+        Group_Contract->>Ledger: Mint Stretch_Anchor_O10-XX tokens
+    end
+
+    Note over Group_Contract: 
+      Each contract change generates diffs/state capsules, references Contract_Anchor_O7 for auditability.
+    Note over Ubiquity_OS: 
+      State transitions are non-temporal; anchors enable deterministic replay.
+```
+
+``` 
+
 
 ## TL;DR — How to Use This Repo
 1. **Start here:** `docs/00_WELCOME.md` (5‑minute overview).
